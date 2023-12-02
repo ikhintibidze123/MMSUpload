@@ -1,0 +1,327 @@
+
+
+export function fillStatus(document, message) {
+  var statusRadios = document.getElementsByName('Status');
+
+ setTimeout(function () {
+    for (var i = 0; i < statusRadios.length; i++) {
+      var statusText = document.querySelector("label[for='" + statusRadios[i].id + "']");
+      if (statusText.textContent.includes(message.message.constructionStatus)) {
+        statusRadios[i].click();
+        break;
+      }
+    }
+  }, 2000);
+}
+
+
+
+
+export function fillRooms(document, message) {
+  var roomRadios = document.getElementsByName("Rooms");
+
+  setTimeout(function () {
+
+    if (message.message.rooms>8) roomRadios[roomRadios.length-1].click();
+    else
+    if (roomRadios.length > 1) {
+
+      var integerNumber = parseInt(message.message.rooms, 10);
+
+      var selectedElement = roomRadios[integerNumber];
+
+      if (selectedElement) {
+        selectedElement.click();
+      } else {
+        console.log("Selected element is undefined.");
+      }
+    } else {
+      console.log("There are not enough elements in the NodeList.");
+    }
+  }, 2000);
+
+}
+
+
+export function fillBedrooms(document, message) {
+
+  var bedroomRadios = document.getElementsByName("bedroomrad");
+
+  setTimeout(function () {
+
+    if (bedroomRadios.length > 1) {
+      var integerNumber = parseInt(message.message.bedroomCount, 10);
+
+      var selectedElement2 = bedroomRadios[integerNumber - 1];
+
+      if (selectedElement2) {
+        selectedElement2.click();
+      } else {
+        console.log("Selected element is undefined.");
+      }
+    } else {
+      console.log("There are not enough elements in the NodeList.");
+    }
+  }, 2000);
+
+}
+
+
+export function fillCurrentFloor(document, message) {
+
+  var currentFloor = document.getElementById("Floor");
+  currentFloor.value = message.message.currentFloor;
+
+  const event = new Event('change', {
+    bubbles: true,
+  });
+  
+  currentFloor.dispatchEvent(event);
+
+}
+
+
+
+export function fillAllFloor(document, message) {
+
+  var allFloor = document.getElementById("Floors");
+  allFloor.value = message.message.allFloor;
+
+  const event = new Event('change', {
+    bubbles: true,
+  });
+  
+  allFloor.dispatchEvent(event);
+
+}
+
+
+
+export function fillDescription(document, message) {
+
+  var descr = document.getElementById("DescriptionGe");
+  descr.value = message.message.description;
+
+}
+
+
+export function fillPriceUSD(document, message) {
+
+  var priceUSD = document.getElementById("PriceUsd");
+  priceUSD.value = parseFloat(message.message.priceUSD.replace(/,/g, ''));
+
+  var event = new Event("input", {
+    bubbles: true,
+    cancelable: true,
+  });
+
+  priceUSD.dispatchEvent(event);
+
+}
+
+
+/*
+export function fillBalcony(document, message) {
+  
+  var balconyRadios = document.getElementsByName("Balcony_Loggia");
+
+  setTimeout(function () {
+
+    if (balconyRadios.length > 1) {
+
+      var integerNumber = parseInt(message.message.rooms, 10);
+
+      var selectedElement = roomRadios[integerNumber];
+
+      if (selectedElement) {
+        selectedElement.click();
+      } else {
+        console.log("Selected element is undefined.");
+      }
+    } else {
+      console.log("There are not enough elements in the NodeList.");
+    }
+  }, 2000);
+
+}
+*/
+
+export function fillWetPoint(document, message) {
+
+  var wetPointCountRadios = document.getElementsByName("Toilet");
+  console.log(message.message.wetPointCount);
+  setTimeout(function () {
+    
+    if (parseInt(message.message.wetPointCount) === 0) wetPointCountRadios[5].click(); else
+    if (parseInt(message.message.wetPointCount) > 5) wetPointCountRadios[4].click(); else
+    if (parseInt(message.message.wetPointCount) > 0) {
+
+          var integerNumber = parseInt(message.message.wetPointCount - 1, 10);
+
+          var selectedElement = wetPointCountRadios[integerNumber];
+
+          if (selectedElement) {
+            selectedElement.click();
+          } else {
+            console.log("Selected element is undefined.");
+          }
+        } else {
+          console.log("There are not enough elements in the NodeList.");
+        }
+  }, 2000);
+
+}
+
+
+
+export function fillBalcony(document, message) {
+
+  var wetPointCountRadios = document.getElementsByName("Balcony_Loggia");
+  wetPointCountRadios[1].click(); 
+
+}
+
+
+export function fillOther(document, message) {
+
+// Get the parent element that contains all the checkboxes
+const checkboxContainer = document.querySelector('.fields-radio-group.text-checkbox-group');
+
+// Get all the checkboxes within the container
+const checkboxes = checkboxContainer.querySelectorAll('input[type="checkbox"]');
+
+// Loop through each checkbox and set its checked value to true
+checkboxes.forEach((checkbox) => {
+    checkbox.checked = true;
+});
+
+}
+
+export function fillCondition(document, message) {
+
+  var conditionRadios = document.getElementsByName("State");
+  
+  conditionRadios.forEach((condition) => {
+      
+    const labelElement = condition.nextElementSibling;
+    const labelText = labelElement.textContent.trim();
+
+      if ((labelText === "ახალი რემონტით") && (message.message.condition === "ახალი გარემონტებული"))
+      {
+        condition.click();
+      }
+
+      else
+
+      if (labelText === message.message.condition)  condition.click();
+      
+      return;
+  });
+  
+}
+
+
+export function fillProject(document, message) {
+
+  var projectRadios = document.getElementsByName("Project");
+  
+  projectRadios.forEach((project) => {
+      
+    const labelElement = project.nextElementSibling;
+    const labelText = labelElement.textContent.trim();
+
+    if (labelText === message.message.project)    project.click();
+      
+    return;
+  });
+  
+}
+
+
+
+
+export function fillAdditionFields(document, message) {
+
+  const sectionRow = document.querySelector('.section-row.application-main-info');
+  const sectionTitle = sectionRow.querySelector('.section-title');
+  const nextDiv = sectionTitle.nextElementSibling;
+  const checkboxInputs = nextDiv.querySelectorAll('input[type="checkbox"]');
+  const messageValues = [];
+  
+  if (message.message.hasHeating) messageValues.push("Heating");
+  if (message.message.hasGas) messageValues.push("NaturalGas");
+  if (message.message.hasStorageRoom) messageValues.push("Storage");
+  if (message.message.hasbalcony) messageValues.push("Balcony");
+  if (message.message.hasParking) messageValues.push("Garage");
+  if (message.message.hasPassangerElevator) messageValues.push("Elevator");
+  if (message.message.allFloor === message.message.currentFloor) messageValues.push("LastFloor");
+ 
+  for (let i = 0; i < checkboxInputs.length; i++) {
+    const checkboxInput = checkboxInputs[i];
+   
+    const labelValue = checkboxInput.getAttribute('name').trim();
+    
+    // Check checkboxes if labelValue is equal to a specific value
+    if (messageValues.includes(labelValue)) {
+      checkboxInput.checked = true; // Check the checkbox
+    }
+  }
+  
+  }
+
+
+  export function fillCommerceEstateType(document, message) {
+    var xpathExpression = "";
+       switch (message.message.commerceEstateType.trim()) {
+        case "საოფისე ფართი":
+        case "საოფისე":  
+            xpathExpression = "//div[@id='create-app-details']//div[p[text()='საოფისე ფართი']]";
+            break;
+        case "კომერციული ფართი":
+        case "უნივერსალური":
+        case "სპეციალური":
+        case "მთლიანი შენობა":
+        case "ავტოსამრეცხაო":
+        case "ავტოსერვისი":         
+        xpathExpression = "//div[@id='create-app-details']//div[p[text()='კომერციული ფართი']]";
+        break;
+        case "სასაწყობე/საწარმოო ფართი":
+        case "სასაწყობე":  
+        case "საწარმოო ფართი":
+          xpathExpression = "//div[@id='create-app-details']//div[p[text()='სასაწყობე/საწარმოო ფართი']]";
+          break;
+        case "კვების ობიექტი":
+        case "კვების ობიექტები":
+        case "კვება":   
+        xpathExpression = "//div[@id='create-app-details']//div[p[text()='კვების ობიექტი']]";
+        break;
+        case "გარაჟი":
+        case "ავტოფარეხი":  
+        xpathExpression = "//div[@id='create-app-details']//div[p[text()='გარაჟი']]";
+        break;
+        case "სარდაფი":
+        case "ნახევარსარდაფი":
+          xpathExpression = "//div[@id='create-app-details']//div[p[text()='სარდაფი']]";
+          break;
+        case "სავაჭრო ობიექტი":
+        case "სავაჭრო":  
+        xpathExpression = "//div[@id='create-app-details']//div[p[text()='სავაჭრო ობიექტი']]";
+        break;
+        default:
+          xpathExpression = "//div[@id='create-app-details']//div[p[text()='კომერციული ფართი']]";
+        }
+
+        setTimeout(function () {
+          var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+          var element = result.singleNodeValue;
+          element.click();
+          const changeEvent = new Event("change", {
+            bubbles: true,
+            cancelable: true,
+           });
+           element.dispatchEvent(changeEvent);
+        
+        }, 4000);
+
+  }
+  

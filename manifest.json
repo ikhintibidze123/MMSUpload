@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "MMSUploader",
+    "description": "Add the custom background to google chrom",
+    "version": "1.0",
+   
+      
+  
+    "content_scripts": [
+      {
+      "matches": ["https://www.myhome.ge/ka/my/addProduct/*","https://home.ss.ge/ka/udzravi-qoneba/create/*"],
+      "js": ["dist/content.js", "dist/myhome_apartament_service.js", "dist/myhome_controller.js","axios.js",
+             "dist/ss_controller.js", "jquery.min.js", "select2.min.js","dist/myhome_house_service.js",
+             "dist/myhome_commerce_service.js","dist/myhome_land_service.js","dist/myhome_hotel_service.js",
+             "dist/ss_commerce_service.js","dist/ss_land_service.js","dist/ss_house_service.js","dist/ss_hotel_service.js","dist/ss_common_service.js"]
+      }
+    ],
+  
+    "background": {
+      "service_worker": "dist/background.js"
+    },
+  
+    "externally_connectable": {
+    "matches": [
+      "https://metropolisteam.com/*",
+      "http://localhost:4200/*"
+    ]
+    },
+  
+    "permissions": ["scripting", "tabs", "activeTab","bookmarks","webNavigation","management"],
+    
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    }
+    
+    
+  
+  }
