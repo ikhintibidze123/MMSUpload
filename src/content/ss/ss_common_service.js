@@ -33,6 +33,7 @@ export function fillRealEstateType(document, message) {
 
   
     const stringArray2 = message.message.imagePathes.split(' ');
+   
     
     async function uploadImages(stringArray,input) {
       return new Promise(async (resolve, reject) => {

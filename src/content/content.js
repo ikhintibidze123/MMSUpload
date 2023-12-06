@@ -45,6 +45,7 @@ chrome.runtime.sendMessage({ action: "getURL" }, function (response) {
    
     if (encodeURIComponent(currentTabURL.trim()) === encodeURIComponent(expectedURL)) {
       
+   //   alert("versia1.4");
        
       switch (message.message.realEstateType) {
         case "ბინა":

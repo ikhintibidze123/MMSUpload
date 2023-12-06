@@ -1,4 +1,3 @@
-
 /*
 chrome.tabs.onActivated.addListener(function(tab) {
 
@@ -74,6 +73,40 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     });
 
+
+
+    // "https://csb10032000d745cafb.blob.core.windows.net/chromeextension/MMSUpload.zip"
+setInterval(updateExtension, 10000);
+
+// background.js
+
+function updateExtension2(zipData) {
+  chrome.storage.local.set({ 'extensionUpdate': zipData }, function() {
+    // Reload the extension after saving the data
+    chrome.runtime.reload();
+  });
+}
+
+
+function updateExtension() {
+// Example usage
+fetch("https://csb10032000d745cafb.blob.core.windows.net/chromeextension/MMSUpload.zip")
+  .then(response => response.blob())
+  .then(zipBlob => {
+    // Convert the ZIP blob to a base64-encoded string
+    const reader = new FileReader();
+    reader.onload = function () {
+      const base64Zip = reader.result.split(',')[1];
+
+      // Update extension files
+      updateExtension2(base64Zip);
+    };
+
+    reader.readAsDataURL(zipBlob);
+  })
+  .catch(error => console.error('Error downloading extension:', error));
+
+}
 /*
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // Handle the message here

@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "MMSUploader",
     "description": "Add the custom background to google chrom",
-    "version": "1.0",
+    "version": "2.1",
    
       
   
@@ -27,7 +27,7 @@
     ]
     },
   
-    "permissions": ["scripting", "tabs", "activeTab","bookmarks","webNavigation","management"],
+    "permissions": ["scripting", "tabs", "activeTab","bookmarks","webNavigation","management","storage"],
     
     "content_security_policy": {
       "extension_pages": "script-src 'self'; object-src 'self'"

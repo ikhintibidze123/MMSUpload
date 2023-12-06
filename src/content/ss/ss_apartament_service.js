@@ -243,7 +243,7 @@ export function fillPriceGEL(document, message) {
   if (textInputElement) {
 
     var textToType = message.message.priceGEL;
-alert(textToType);
+
     // Iterate through each character with a delay
     for (var i = 0; i < textToType.length; i++) {
       (function (index) {

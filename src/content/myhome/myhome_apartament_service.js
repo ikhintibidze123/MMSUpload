@@ -549,6 +549,8 @@ export function fillDescription(document, message) {
 export function fillImages(document, message) {
     const stringArray = message.message.imagePathes.split(' ');
 
+    console.log(stringArray);
+
     /*--------------------------*/
     async function uploadImages(stringArray) {
         const input = document.getElementById('images');
