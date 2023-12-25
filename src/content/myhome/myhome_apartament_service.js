@@ -549,8 +549,6 @@ export function fillDescription(document, message) {
 export function fillImages(document, message) {
     const stringArray = message.message.imagePathes.split(' ');
 
-    console.log(stringArray);
-
     /*--------------------------*/
     async function uploadImages(stringArray) {
         const input = document.getElementById('images');
@@ -559,51 +557,7 @@ export function fillImages(document, message) {
         // Create an array of promises for fetch operations
         const fetchPromises = stringArray.map(async (imageUrl, i) => {
             try {
-                
-
-
-                try {
-                    // Replace this URL with the actual URL of the proxy list API on FreeProxyList.net
-                    const apiUrl = 'https://www.free-proxy-list.net/api/proxy?';
-                
-                    // Make a request to the FreeProxyList.net API
-                    const response = await fetch(apiUrl);
-                    
-                    if (!response.ok) {
-                      throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                
-                    // Parse the JSON response
-                    const proxies = await response.json();
-                
-                    // Display the list of proxies
-                    console.log(proxies);
-                
-                    // Now you can use the proxies in your application
-                    // ...
-                
-                  } catch (error) {
-                    console.error('Error fetching proxies:', error);
-                  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 const response = await fetch(imageUrl);
-
-
-
                 const blob = await response.blob();
                 const file = new File([blob], `image${i}.jpg`, { type: 'image/jpeg' });
                 dataTransfer.items.add(file);

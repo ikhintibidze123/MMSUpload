@@ -32,77 +32,48 @@ export function fillRealEstateType(document, message) {
   export function fillImages(document, message) {
 
   
-    const stringArray2 = message.message.imagePathes.split(' ');
-   
-    
-    async function uploadImages(stringArray,input) {
-      return new Promise(async (resolve, reject) => {
-        try {
-  
-         const input = document.evaluate('//div[@id="create-app-images"]//input[@type="file"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;
-          
-          const dataTransfer = new DataTransfer();
-  
-  
-          const fetchPromises = stringArray.map(async (imageUrl, i) => {
-            try {
-                     
-              const response = await axios.post('https://mmsback.azurewebsites.net/image/getImage', {
-                imageUrl: imageUrl
-              }, {
-                responseType: 'arraybuffer' // Ensure the response is treated as binary data
-              });
-          
-             
-              // Assuming that the response.data is an ArrayBuffer
-              const blob = new Blob([response.data], { type: 'image/jpeg' });
-              // Assuming that dataTransfer is defined elsewhere in your code
-              dataTransfer.items.add(new File([blob], `image${i}.jpg`, { type: 'image/jpeg' }));
-          
-            } catch (error) {
-              console.error('Error fetching image:', imageUrl, error);
-            }
-          });
-          
-          // Assuming you want to wait for all requests to finish before proceeding
-          await Promise.all(fetchPromises);
-          
-          // Do something after all requests have completed
-          console.log("All requests completed");
-          
-          // Set the DataTransfer object containing all files to the input element
-          input.value = null;
-  
-       
-          input.files = dataTransfer.files;
-  
-          // Dispatch the 'change' event once after all files are added
-          const event = new Event('change', {
-            bubbles: true,
-          });
-          input.dispatchEvent(event);
-  
-          // Resolve the promise to indicate that the upload is complete
-          resolve();
-        } catch (error) {
-          reject(error);
-        }
-      });
-    }
-  
-    // Usage example
-    uploadImages(stringArray2)
-      .then(() => {
-        // The upload is complete, you can stop the progress indicator here
-        console.log('Image upload complete');
-      })
-      .catch((error) => {
-        console.error('Error during image upload:', error);
-      });
-  
-  }
-  
+    const stringArray = message.message.imagePathes.split(' ');
 
+    /*--------------------------*/
+    async function uploadImages(stringArray) {
+      const input = document.evaluate('//div[@id="create-app-images"]//input[@type="file"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;
+        
+        const dataTransfer = new DataTransfer();
+
+        // Create an array of promises for fetch operations
+        const fetchPromises = stringArray.map(async (imageUrl, i) => {
+            try {
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], `image${i}.jpg`, { type: 'image/jpeg' });
+                dataTransfer.items.add(file);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Wait for all fetch operations to complete
+        await Promise.all(fetchPromises);
+
+        // Set the DataTransfer object containing all files to the input element
+        input.files = dataTransfer.files;
+
+
+        // Dispatch the 'change' event once after all files are added
+        const event = new Event('change', {
+            bubbles: true,
+        });
+        input.dispatchEvent(event);
+    }
+
+
+
+    uploadImages(stringArray);
+  }
+
+
+    
+   
   
 export function fillStatus(document, message) {
 
