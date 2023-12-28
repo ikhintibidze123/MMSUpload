@@ -75,8 +75,7 @@ export function fillMyhomeApartament(document,message) {
     myhomeService.checkConditioner(document,message);
     myhomeService.checkFurniture(document,message);
     myhomeService.fillPrices(document, message);
-
-    fillRentHoleHouse
+    myhomeService.fillRentHoleHouse(document, message);
   }
 
 
