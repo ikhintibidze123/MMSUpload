@@ -14,57 +14,6 @@ export function fillStatus(document, message) {
 
 
 
-
-export function fillRooms(document, message) {
-  var roomRadios = document.getElementsByName("Rooms");
-
-  setTimeout(function () {
-
-    if (message.message.rooms>8) roomRadios[roomRadios.length-1].click();
-    else
-    if (roomRadios.length > 1) {
-
-      var integerNumber = parseInt(message.message.rooms, 10);
-
-      var selectedElement = roomRadios[integerNumber];
-
-      if (selectedElement) {
-        selectedElement.click();
-      } else {
-        console.log("Selected element is undefined.");
-      }
-    } else {
-      console.log("There are not enough elements in the NodeList.");
-    }
-  }, 2000);
-
-}
-
-
-export function fillBedrooms(document, message) {
-
-  var bedroomRadios = document.getElementsByName("bedroomrad");
-
-  setTimeout(function () {
-
-    if (bedroomRadios.length > 1) {
-      var integerNumber = parseInt(message.message.bedroomCount, 10);
-
-      var selectedElement2 = bedroomRadios[integerNumber - 1];
-
-      if (selectedElement2) {
-        selectedElement2.click();
-      } else {
-        console.log("Selected element is undefined.");
-      }
-    } else {
-      console.log("There are not enough elements in the NodeList.");
-    }
-  }, 2000);
-
-}
-
-
 export function fillCurrentFloor(document, message) {
 
   var currentFloor = document.getElementById("Floor");
@@ -257,17 +206,27 @@ export function fillAdditionFields(document, message) {
   
 export function fillYardArea(document, message) {
 
-  var yardArea = document.getElementById("AreaOfYard");
-  yardArea.value = message.message.yardSpace;
-
-  var event = new Event("input", {
+  const totalAreaInput = document.getElementsByName('areaOfYard')[0];
+  totalAreaInput.value = message.message.yardSpace;
+ 
+  const event = new Event('change', {
     bubbles: true,
-    cancelable: true,
   });
-
-  yardArea.dispatchEvent(event);
+  
+  totalAreaInput.dispatchEvent(event);
 
 }
 
 
  
+export function fillHouseTotalArea(document, message) {
+
+  const totalAreaInput = document.getElementsByName('areaOfHouse')[0];
+  totalAreaInput.value = message.message.estateSpace;
+ 
+  const event = new Event('change', {
+    bubbles: true,
+  });
+  
+  totalAreaInput.dispatchEvent(event);
+}

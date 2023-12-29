@@ -309,7 +309,16 @@ export function fillAdditionFields(document, message) {
     if ((message.message.hasPassangerElevator === "კი") && (elementTxt === "ლიფტი")) paragraph.click();
     if ((message.message.hasParking === "კი") && (elementTxt === "გარაჟი")) paragraph.click();
     if ((message.message.hasStorageRoom === "კი") && (elementTxt === "სათავსო")) paragraph.click();
+    if ((message.message.hasHeating === "კი") && (elementTxt === "ცენტ. გათბობა")) paragraph.click();
+    if ((message.message.hasAirConditioner === "კი") && (elementTxt === "კონდიციონერი")) paragraph.click();
+    if ((message.message.hasFurniture === "კი") && (elementTxt === "ავეჯი")) paragraph.click();
+    if ((message.message.hasHotWater === "კი") && (elementTxt === "ცხელი წყალი")) paragraph.click();
+    if ((message.message.hasInternet === "კი") && (elementTxt === "ინტერნეტი")) paragraph.click();
+    if ((message.message.hasTV === "კი") && (elementTxt === "ტელევიზორი")) paragraph.click();
   });
+
+
+  
 
 
 }

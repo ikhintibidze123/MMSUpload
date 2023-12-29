@@ -53,22 +53,21 @@ export function fillSSLand(document,message) {
   setTimeout(function () { ssLandService.fillBalcony(document,message)}, 1000);
   setTimeout(function () { ssLandService.fillCondition(document,message)}, 1000);
   setTimeout(function () { ssLandService.fillPriceUSD(document,message)}, 1000);
+  
 }
 
 
 
 
 export function fillSSHouse(document,message) {
-  ssHouseService.fillBedrooms(document,message);
-  setTimeout(function () { ssHouseService.fillAdditionFields(document,message)}, 2000);
   
+  setTimeout(function () { ssHouseService.fillAdditionFields(document,message)}, 2000);
   setTimeout(function () { ssHouseService.fillDescription(document,message)}, 1000);
   setTimeout(function () { ssHotelService.fillCondition(document,message)}, 1000);
   setTimeout(function () { ssHouseService.fillPriceUSD(document,message)}, 1000);
-  setTimeout(function () { ssHouseService.fillYardArea(document,message)}, 1000);
- 
+  setTimeout(function () { ssHouseService.fillYardArea(document,message)}, 2000);
+  setTimeout(function () { ssHouseService.fillHouseTotalArea(document,message)}, 2000);
 
-  
 }
 
 
@@ -93,7 +92,7 @@ export function fillSSCommon(document,message) {
   setTimeout(function () { ssCommonService.fillImages(document,message)}, 2000);
   setTimeout(function () { ssCommonService.fillStatus(document,message)}, 2000);
   setTimeout(function () { ssCommonService.fillRooms(document,message)}, 2000); 
-  
+  setTimeout(function () { ssCommonService.fillBedrooms(document,message)}, 2000); 
   setTimeout(function () { ssCommonService.fillTotalArea(document,message)}, 2000);
  
 }
