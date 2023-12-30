@@ -123,27 +123,28 @@ export function fillWetPoint(document, message) {
 
 export function fillCondition(document, message) {
 
-  var conditionRadios = document.getElementsByName("State");
-  
-  conditionRadios.forEach((condition) => {
+  setTimeout(function () {
+    var xpathExpression = "//div[@id='create-form-details']//span[text()='მდგომარეობა']";
+    var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+
+    var targetSpan = result.singleNodeValue;
+    
+    var firstSibling = targetSpan.parentElement.nextElementSibling;
+
+
+    var paragraphs = firstSibling.querySelectorAll('p');
+
+    paragraphs.forEach(function (paragraph) {
+
+      let cond2 =  message.message.condition.trim();
+
+      if (cond2 === "ახალი გარემონტებული") cond2 = "ახალი რემონტით";
       
-    const labelElement = condition.nextElementSibling;
-    const labelText = labelElement.textContent.trim();
+      if (paragraph.textContent.trim() === cond2) paragraph.click();
+    });
+  }, 2000);
 
-      if ((labelText === "ახალი რემონტით") && (message.message.condition === "ახალი გარემონტებული"))
-      {
-        condition.click();
-      }
-
-      else
-
-      if (labelText === message.message.condition)  condition.click();
-      
-      return;
-  });
-  
 }
-
 
 export function fillProject(document, message) {
 
@@ -174,35 +175,35 @@ export function checkGas(document,message) {
 
 export function fillAdditionFields(document, message) {
 
-  const sectionRow = document.querySelector('.section-row.application-main-info');
-  const sectionTitle = sectionRow.querySelector('.section-title');
-  const nextDiv = sectionTitle.nextElementSibling;
-  const checkboxInputs = nextDiv.querySelectorAll('input[type="checkbox"]');
-  const messageValues = [];
-  
-  if (message.message.hasHeating) messageValues.push("Heating");
-  if (message.message.hasGas) messageValues.push("NaturalGas");
-  if (message.message.hasStorageRoom) messageValues.push("Storage");
-  if (message.message.hasbalcony) messageValues.push("Balcony");
-  if (message.message.hasParking) messageValues.push("Garage");
-  if (message.message.hasPassangerElevator) messageValues.push("Elevator");
-  if (message.message.allFloor === message.message.currentFloor) messageValues.push("LastFloor");
- 
-  for (let i = 0; i < checkboxInputs.length; i++) {
-    const checkboxInput = checkboxInputs[i];
-   
-    const labelValue = checkboxInput.getAttribute('name').trim();
-    
-    // Check checkboxes if labelValue is equal to a specific value
-    if (messageValues.includes(labelValue)) {
-      checkboxInput.checked = true; // Check the checkbox
-    }
-  }
-  
-  }
+
+  var xpathExpression = "//div[@id='create-app-additional-info']//h4[text()='დამატებითი ინფორმაცია']";
+  var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+
+  var targetSpan = result.singleNodeValue;
 
 
+  var firstSibling = targetSpan.parentElement.nextElementSibling;
 
+  var paragraphs = firstSibling.querySelectorAll('p');
+
+  paragraphs.forEach(function (paragraph) {
+
+    const elementTxt = paragraph.textContent.trim();
+    if ((message.message.hasGas === "კი") && (elementTxt === "ბუნებრივი აირი")) paragraph.click();
+    if ((message.message.hasbalcony === "კი") && (elementTxt === "აივანი")) paragraph.click();
+    if ((message.message.hasBasement === "კი") && (elementTxt === "სარდაფი")) paragraph.click();
+    if ((message.message.hasPassangerElevator === "კი") && (elementTxt === "ლიფტი")) paragraph.click();
+    if ((message.message.hasParking === "კი") && (elementTxt === "გარაჟი")) paragraph.click();
+    if ((message.message.hasStorageRoom === "კი") && (elementTxt === "სათავსო")) paragraph.click();
+    if ((message.message.hasHeating === "კი") && (elementTxt === "ცენტ. გათბობა")) paragraph.click();
+    if ((message.message.hasAirConditioner === "კი") && (elementTxt === "კონდიციონერი")) paragraph.click();
+    if ((message.message.hasFurniture === "კი") && (elementTxt === "ავეჯი")) paragraph.click();
+    if ((message.message.hasHotWater === "კი") && (elementTxt === "ცხელი წყალი")) paragraph.click();
+    if ((message.message.hasInternet === "კი") && (elementTxt === "ინტერნეტი")) paragraph.click();
+    if ((message.message.hasTV === "კი") && (elementTxt === "ტელევიზორი")) paragraph.click();
+  });
+
+}
   
 export function fillYardArea(document, message) {
 

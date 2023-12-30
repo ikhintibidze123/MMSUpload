@@ -63,7 +63,7 @@ export function fillSSHouse(document,message) {
   
   setTimeout(function () { ssHouseService.fillAdditionFields(document,message)}, 2000);
   setTimeout(function () { ssHouseService.fillDescription(document,message)}, 1000);
-  setTimeout(function () { ssHotelService.fillCondition(document,message)}, 1000);
+  setTimeout(function () { ssHouseService.fillCondition(document,message)}, 1000);
   setTimeout(function () { ssHouseService.fillPriceUSD(document,message)}, 1000);
   setTimeout(function () { ssHouseService.fillYardArea(document,message)}, 2000);
   setTimeout(function () { ssHouseService.fillHouseTotalArea(document,message)}, 2000);
