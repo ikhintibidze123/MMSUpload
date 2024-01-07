@@ -168,23 +168,9 @@ export function fillCondition(document, message) {
 }
 
 
-export function fillDescription(document, message) {
-  var xpathExpression = '//*[@id="create-app-desc"]//textarea';
-  var textareaElement = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
-  if (textareaElement) {
-    textareaElement.value = message.message.description;
 
-    const event = new Event('change', {
-      bubbles: true,
-    });
-    textareaElement.dispatchEvent(event);
 
-  } else {
-    console.log('Textarea element not found');
-  }
-
-}
 export function fillPriceGEL(document, message) {
   var xpathExpression = "//div[@id='create-app-price']//span[text()='სრული ფასი']";
   var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);

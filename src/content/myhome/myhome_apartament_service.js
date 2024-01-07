@@ -541,7 +541,7 @@ export function fillOwner(document, message) {
 
 export function fillDescription(document, message) {
     var commentGeo = document.getElementById("CommentGeo");
-    commentGeo.value = message.message.description;
+    commentGeo.value = message.message.comment;
 }
 
 

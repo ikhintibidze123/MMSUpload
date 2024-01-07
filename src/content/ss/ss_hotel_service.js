@@ -98,14 +98,6 @@ export function fillAllFloor(document, message) {
 
 
 
-export function fillDescription(document, message) {
-
-  var descr = document.getElementById("DescriptionGe");
-  descr.value = message.message.description;
-
-}
-
-
 export function fillPriceUSD(document, message) {
 
   var priceUSD = document.getElementById("PriceUsd");

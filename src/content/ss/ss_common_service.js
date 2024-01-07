@@ -208,3 +208,25 @@ export function fillTotalArea(document, message) {
   
   totalAreaInput.dispatchEvent(event);
 }
+
+
+
+
+export function fillDescription(document, message) {
+
+  var xpathExpression = '//*[@id="create-app-desc"]//textarea';
+  var textareaElement = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+  if (textareaElement) {
+    textareaElement.value = message.message.comment;
+
+    const event = new Event('change', {
+      bubbles: true,
+    });
+    textareaElement.dispatchEvent(event);
+
+  } else {
+    console.log('Textarea element not found');
+  }
+
+}
