@@ -90,5 +90,7 @@ export function fillSSCommon(document,message) {
   setTimeout(function () { ssCommonService.fillBedrooms(document,message)}, 2000); 
   setTimeout(function () { ssCommonService.fillTotalArea(document,message)}, 2000);
   setTimeout(function () { ssCommonService.fillDescription(document,message)}, 2000);
+  setTimeout(function () { ssCommonService.fillCondition(document,message)}, 2000);
+  setTimeout(function () { ssCommonService.fillAdditionFields(document,message)}, 2000);
   
 }

@@ -142,32 +142,6 @@ export function fillProject(document, message) {
 
 
 
-export function fillCondition(document, message) {
-
-  setTimeout(function () {
-    var xpathExpression = "//div[@id='create-form-details']//span[text()='მდგომარეობა']";
-    var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-
-    var targetSpan = result.singleNodeValue;
-    
-    var firstSibling = targetSpan.parentElement.nextElementSibling;
-
-
-    var paragraphs = firstSibling.querySelectorAll('p');
-
-    paragraphs.forEach(function (paragraph) {
-
-      let cond2 =  message.message.condition.trim();
-
-      if (cond2 === "ახალი გარემონტებული") cond2 = "ახალი რემონტით";
-      
-      if (paragraph.textContent.trim() === cond2) paragraph.click();
-    });
-  }, 2000);
-
-}
-
-
 
 
 
@@ -226,44 +200,6 @@ export function fillPriceGEL(document, message) {
 }
 
 
-
-
-
-export function fillAdditionFields(document, message) {
-
-
-  var xpathExpression = "//div[@id='create-app-additional-info']//h4[text()='დამატებითი ინფორმაცია']";
-  var result = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-
-  var targetSpan = result.singleNodeValue;
-
-
-  var firstSibling = targetSpan.parentElement.nextElementSibling;
-
-  var paragraphs = firstSibling.querySelectorAll('p');
-
-  paragraphs.forEach(function (paragraph) {
-
-    const elementTxt = paragraph.textContent.trim();
-    if ((message.message.hasGas === "კი") && (elementTxt === "ბუნებრივი აირი")) paragraph.click();
-    if ((message.message.hasbalcony === "კი") && (elementTxt === "აივანი")) paragraph.click();
-    if ((message.message.hasBasement === "კი") && (elementTxt === "სარდაფი")) paragraph.click();
-    if ((message.message.hasPassangerElevator === "კი") && (elementTxt === "ლიფტი")) paragraph.click();
-    if ((message.message.hasParking === "კი") && (elementTxt === "გარაჟი")) paragraph.click();
-    if ((message.message.hasStorageRoom === "კი") && (elementTxt === "სათავსო")) paragraph.click();
-    if ((message.message.hasHeating === "კი") && (elementTxt === "ცენტ. გათბობა")) paragraph.click();
-    if ((message.message.hasAirConditioner === "კი") && (elementTxt === "კონდიციონერი")) paragraph.click();
-    if ((message.message.hasFurniture === "კი") && (elementTxt === "ავეჯი")) paragraph.click();
-    if ((message.message.hasHotWater === "კი") && (elementTxt === "ცხელი წყალი")) paragraph.click();
-    if ((message.message.hasInternet === "კი") && (elementTxt === "ინტერნეტი")) paragraph.click();
-    if ((message.message.hasTV === "კი") && (elementTxt === "ტელევიზორი")) paragraph.click();
-  });
-
-
-  
-
-
-}
 
 export function fillOther(document, message) {
 

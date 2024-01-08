@@ -190,29 +190,6 @@ checkboxes.forEach((checkbox) => {
 
 }
 
-export function fillCondition(document, message) {
-
-  var conditionRadios = document.getElementsByName("State");
-  
-  conditionRadios.forEach((condition) => {
-      
-    const labelElement = condition.nextElementSibling;
-    const labelText = labelElement.textContent.trim();
-
-      if ((labelText === "ახალი რემონტით") && (message.message.condition === "ახალი გარემონტებული"))
-      {
-        condition.click();
-      }
-
-      else
-
-      if (labelText === message.message.condition)  condition.click();
-      
-      return;
-  });
-  
-}
-
 
 export function fillProject(document, message) {
 
@@ -229,33 +206,3 @@ export function fillProject(document, message) {
   });
   
 }
-
-
-export function fillAdditionFields(document, message) {
-
-  const sectionRow = document.querySelector('.section-row.application-main-info');
-  const sectionTitle = sectionRow.querySelector('.section-title');
-  const nextDiv = sectionTitle.nextElementSibling;
-  const checkboxInputs = nextDiv.querySelectorAll('input[type="checkbox"]');
-  const messageValues = [];
-  
-  if (message.message.hasHeating) messageValues.push("Heating");
-  if (message.message.hasGas) messageValues.push("NaturalGas");
-  if (message.message.hasStorageRoom) messageValues.push("Storage");
-  if (message.message.hasbalcony) messageValues.push("Balcony");
-  if (message.message.hasParking) messageValues.push("Garage");
-  if (message.message.hasPassangerElevator) messageValues.push("Elevator");
-  if (message.message.allFloor === message.message.currentFloor) messageValues.push("LastFloor");
- 
-  for (let i = 0; i < checkboxInputs.length; i++) {
-    const checkboxInput = checkboxInputs[i];
-   
-    const labelValue = checkboxInput.getAttribute('name').trim();
-    
-    // Check checkboxes if labelValue is equal to a specific value
-    if (messageValues.includes(labelValue)) {
-      checkboxInput.checked = true; // Check the checkbox
-    }
-  }
-  
-  }
