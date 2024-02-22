@@ -42,10 +42,12 @@ chrome.runtime.sendMessage({ action: "getURL" }, function (response) {
     const expectedURL2 = "https://home.ss.ge/ka/udzravi-qoneba/create";
 
     chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+
+     // alert(JSON.stringify(message.message));
    
     if (encodeURIComponent(currentTabURL.trim()) === encodeURIComponent(expectedURL)) {
       
-   //   alert("versia1.4");
+   
        
       switch (message.message.realEstateType) {
         case "ბინა":
@@ -65,7 +67,7 @@ chrome.runtime.sendMessage({ action: "getURL" }, function (response) {
             fillMyhomeHotel(document,message);
             break;
         default:
-            fillMyhome(document,message);
+            fillMyhomeApartament(document,message);
     }
 
     }

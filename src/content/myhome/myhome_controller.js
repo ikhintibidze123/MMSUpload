@@ -117,7 +117,6 @@ export function fillMyhomeApartament(document,message) {
     myhomeLandService.fillImages(document,message);
     myhomeLandService.fillLandType(document,message);
     myhomeLandService.fillAreaMeasure(document,message);
-    myhomeLandService.fillAreaMeasure(document,message);
   }
 
 

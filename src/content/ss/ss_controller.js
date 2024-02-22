@@ -47,7 +47,6 @@ export function fillSSHotel(document,message) {
 
 export function fillSSLand(document,message) {
   
-  setTimeout(function () { ssLandService.fillBalcony(document,message)}, 1000);
   setTimeout(function () { ssLandService.fillCondition(document,message)}, 1000);
   setTimeout(function () { ssLandService.fillPriceUSD(document,message)}, 1000);
   
